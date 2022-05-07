@@ -1,0 +1,50 @@
+Im going to create a ticket booth using the MERN stack. Client will be able to buy and sell tickets to sporting events, concerts, or similar events. 
+
+
+Very Similar wireframe to Pizza Time
+
+1st Page:
+
+Client will create an account or have the option to Login if they already have an account 
+Form will include:
+- First & Last Name
+- Email
+- Password
+- Confirm Password
+- Check Box for seller, buyer or both
+- Button Sign Up
+- Link for returning user to just Login
+
+2nd Page:
+
+Client can login if it already has an account
+Form will include:
+- Email
+- Password
+- Button Login 
+
+3rd Page:
+
+Client Home Page 
+
+Menu:
+- Link Home
+- Order (num)
+- Link account
+- Link Logout
+
+-List Available Tickets for sale
+ - Button View the Ticket Details
+
+- Link Sell ticket(s)
+
+*Links
+
+Account- will display users information and recent listing and purchases.
+
+Order - will display ticket information and once tickets are purchased the listing will be removed from home screen.
+
+Sell Ticket - user will be able to add tickets they want to sell. Form will include all important information need. 
+
+
+
