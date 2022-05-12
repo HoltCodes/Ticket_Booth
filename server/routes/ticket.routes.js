@@ -4,7 +4,7 @@ module.exports = (app) => {
 
   app.post("/api/tickets", TicketController.createNewTicket);
 
-  app.get("/api/tickets", TicketController.findAllTicket);
+  app.get("/api/tickets", TicketController.findAllTickets);
 
   app.put("/api/tickets/:id", TicketController.updateTicket);
 
