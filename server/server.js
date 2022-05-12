@@ -11,8 +11,8 @@ app.use(
 );
 
 
-// require("./config/mongoose.config");
-// require("./routes/pet.routes")(app);
+require("./config/mongoose.config");
+require("./routes/ticket.routes")(app);
 
 const myPort = 8000;
 
