@@ -20,7 +20,7 @@ useEffect(() => {
 
 const deleteTicket = () => {
   axios
-  .delete(`http://localhost:8000/api/ticket/${id}`)
+  .delete(`http://localhost:8000/api/tickets/${id}`)
   .then((res) => {
     console.log(res.data);
     navigate("/")
@@ -37,7 +37,7 @@ const deleteTicket = () => {
       <p>Description: {oneTicket.desc}</p>
       <br/>
       <Link to={"/"} className="btn btn-primary"> Back to home</Link>
-      <button onClick={deleteTicket} className="btn btn-danger ml-5">Buy Ticket(s) {oneTicket.name}</button>
+      <button onClick={deleteTicket} className="btn btn-danger ml-5">Buy Ticket(s) </button>
     </div>
   );
 };
