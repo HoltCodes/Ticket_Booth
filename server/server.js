@@ -12,6 +12,7 @@ app.use(
 
 
 require("./config/mongoose.config");
+require("./routes/user.routes")(app)
 require("./routes/ticket.routes")(app);
 
 const myPort = 8000;
