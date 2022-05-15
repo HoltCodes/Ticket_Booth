@@ -31,6 +31,7 @@ const TicketList = (props) => {
             <th scope="col">Event</th>
             <th scope="col">Date</th>
             <th scope="col">Location</th>
+            <th scope="col">Price</th>
             <th scope="col">Number of Ticket(s)</th>
           </tr>
           {ticketList.map((ticket, index) => {
@@ -39,7 +40,8 @@ const TicketList = (props) => {
                 <td>{ ticket.event}</td>
                 <td>{ ticket.date}</td>
                 <td>{ ticket.location}</td>
-                <td>{ ticket.numberOfTicket}</td>
+                <td>${ ticket.price }</td>
+                <td>{ ticket.numberOfTickets}</td>
                 <td>
                   <Link to={`/tickets/${ticket._id}`}>Details</Link> | <Link to={`/tickets/edit/${ticket._id}`}>Edit</Link>
                 </td>

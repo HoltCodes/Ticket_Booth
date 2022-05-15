@@ -7,7 +7,7 @@ const TicketSchema = new mongoose.Schema({
     minLength: [3, "Event must be a minimum of 3 characters"]
   },
   date: {
-    type: Number,
+    type: String,
     required: [ true, "Date of event is required.  xx/xx/xxxx"],
   },
   location: {

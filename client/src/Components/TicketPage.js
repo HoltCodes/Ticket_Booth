@@ -33,7 +33,7 @@ const deleteTicket = () => {
       <p>Date of event: {oneTicket.date}</p>
       <p>Location of event: {oneTicket.location}</p>
       <p>Number of Tickets: {oneTicket.numberOfTickets}</p>
-      <p>Price: {oneTicket.price}</p>
+      <p>Price: ${oneTicket.price}</p>
       <p>Description: {oneTicket.desc}</p>
       <br/>
       <Link to={"/"} className="btn btn-primary"> Back to home</Link>

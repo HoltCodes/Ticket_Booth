@@ -45,7 +45,7 @@ const TicketForm = () => {
           </div>
           <form onSubmit={ handleAddTicket }>
             <div className="form-group">
-              <label htmlFor="event">:</label>
+              <label htmlFor="event">Event:</label>
               <input
                 type="text"
                 id="event"
@@ -72,7 +72,7 @@ const TicketForm = () => {
               />
               {errors.location && <p style={{ color: "red" }}>{ errors.location.message }</p>}
 
-              <label htmlFor="numberOfTickets">Number of Tickets</label>
+              <label htmlFor="numberOfTickets">Number of Tickets:</label>
               <input
                 type="text"
                 id="numberOfTickets"
@@ -81,7 +81,7 @@ const TicketForm = () => {
               />
 
 
-              <label htmlFor="price">Price</label>
+              <label htmlFor="price">Price:</label>
               <input
                 type="text"
                 id="price"
@@ -89,7 +89,7 @@ const TicketForm = () => {
                 onChange={(e) => setPrice(e.target.value)}
               />
 
-              <label htmlFor="desc">Description</label>
+              <label htmlFor="desc">Description:</label>
               <input
                 type="text"
                 id="desc"
