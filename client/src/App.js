@@ -4,7 +4,7 @@ import TicketList from './Components/Tickets/TicketList';
 import TicketForm from './Components/Tickets/TicketForm';
 import TicketPage from './Components/Tickets/TicketPage';
 import TicketEdit from './Components/Tickets/TicketEdit';
-import Register from './Components/SignUp/Register';
+import Register from './Components/Register';
 
 
 
