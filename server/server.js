@@ -4,6 +4,8 @@ const bcryptjs = require("bcrypt");
 const cors = require("cors");
 const app = express();
 const cookieParser = require("cookie-parser");
+const jwt = require("jsonwebtoken");
+const port = process.env.CLIENT_URL;
 
 // console.log(process.env.SECRET_KEY, process.env.DATABASE);
 app.use(express.json());
@@ -18,10 +20,16 @@ app.use(cookieParser());
 
 
 dotenv.config({path : './config.env'});
-const port = process.env.CLIENT_URL;
+
+var token = jwt.sign({ foo: "bar" }, process.env.SECRET_KEY);
+console.log("token : ", token);
+const decodeToken = jwt.verify(token, process.env.SECRET_KEY);
+console.log(decodeToken);
+
 
 require("./config/mongoose.config");
 require("./routes/ticket.routes")(app);
+require("./routes/user.routes")(app);
 require("dotenv").config();
 
 
