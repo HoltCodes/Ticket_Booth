@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 const Register = (props) => {
@@ -7,7 +7,7 @@ const Register = (props) => {
     const [ email, setEmail ] = useState ("");
     const [ password, setPassWord ] = useState ("");
     const [ confirmPassword, setConfirmPassword ] = useState("");  
-    const [errors, setErrors] = useState({})
+    const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
     const [ user, setUser ] = useState({
@@ -26,19 +26,19 @@ const Register = (props) => {
             confirmPassword
         });
         axios
-        .post('http://localhost:8000/api/users/register', user, { 
+        .post("http://localhost:8000/api/users/register", user,{ 
             username,
             email,
             password,
-            confirmPassword
-         })
+            confirmPassword,
+            withCredentials: true })
             .then(res => {
                 console.log(res.data);
                 navigate('/signin');
             })
             .catch(err => {
-                console.log("error", err.response)
-                setErrors(err.response.data.errors)
+                console.log("error", err.res)
+                setErrors(err.response.data.errors);
                 setUser({
                     username: "",
                     email: "",
@@ -78,6 +78,7 @@ const Register = (props) => {
                                 type="password"
                                 id="password" 
                                 name="password" 
+                                autoComplete="on"
                                 // value={user.password} 
                                 className="FormInput"
                                 onChange={ (e) => setPassWord(e.target.value)}/>
@@ -87,6 +88,7 @@ const Register = (props) => {
                                 type="password" 
                                 id="confirmPassword" 
                                 name="confirmPassword"
+                                autoComplete="on"
                                 // value={user.confirmPassword} 
                                 className="FormInput" 
                                 onChange={ (e) => setConfirmPassword(e.target.value)}/>

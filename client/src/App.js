@@ -5,6 +5,7 @@ import TicketForm from './Components/Tickets/TicketForm';
 import TicketPage from './Components/Tickets/TicketPage';
 import TicketEdit from './Components/Tickets/TicketEdit';
 import Register from './Components/Register';
+import Login from './Components/Signin';
 
 
 
@@ -14,9 +15,10 @@ function App() {
       <h1>Ticket Booth</h1>
       <BrowserRouter>
       <Routes>
+          <Route path="/" element={<Register/> } />
+          <Route path="/signin" element={<Login/> } />
           <Route path="/add" element={<TicketForm/> } /> 
-          <Route path="/signup" element={<Register/> } />
-          <Route path="/" element={<TicketList/>} />
+          <Route path="/tickets" element={<TicketList/>} />
           <Route path="/tickets/:id" element={<TicketPage/> } />
           <Route path="tickets/edit/:id" element={<TicketEdit/>} />
       </Routes>

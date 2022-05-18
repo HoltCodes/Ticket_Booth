@@ -1,9 +1,13 @@
 const mongoose = require("mongoose");
-const dbName = "TicketBooth";
 
-mongoose.connect(`mongodb://localhost/${dbName}`, {
+
+mongoose.connect("mongodb://localhost/TICKET_BOOTH", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-.then(()=>console.log(`Connected to ${dbName} database!`))
-.catch((err)=>console.log(err));
+.then(()=> {
+    console.log("Connection Successful")
+})
+.catch((err)=>{
+    console.log(err)
+});
