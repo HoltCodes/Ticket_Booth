@@ -11,37 +11,43 @@ const TicketForm = () => {
   const[ numberOfTickets, setNumberOfTickets ] = useState("");
   const navigate = useNavigate();
   const [ errors, setErrors ] = useState({});
+  const [authError, setAuthError] = useState("");
+  
   const handleAddTicket = (e) => {
-    e.preventDefault();
-    console.log({
+    const newTicket = {
       event,
       date,
       desc,
-      location, price, numberOfTickets,
-    });
+      location,
+      price,
+      numberOfTickets,
+    };
     axios
-    .post("http://localhost:8000/api/tickets",{
-      event,
-      date,
-      desc,
-      location, price, numberOfTickets,
+    .post("http://localhost/api/post", newTicket, {
+      withCredentials: true,
     })
-    .then((res) => {
-      console.log("success", res);
-      navigate("/");
+    .then((newTicket) => {
+      setErrors({});
+      setAuthError();
+      console.log(newTicket);
     })
     .catch((err) => {
-      console.log("error", err.res);
-      setErrors(err.response.data.errors);
+      console.log(err.message);
+      if (err.response.status === 400) {
+        setAuthError("You must first  login to add a ticket");
+      } else {
+        setErrors(err.response.data.error.errors);
+      }
     });
   };
+
   return (
     <div className="container">
       <h2>Sell your Tickets</h2>
       <div className="rows">
         <div className="col-5">
           <div className="row">
-          <Link to="/">Back to Home</Link>
+          <Link to="/ticketList">Back to Home</Link>
           </div>
           <form onSubmit={ handleAddTicket }>
             <div className="form-group">

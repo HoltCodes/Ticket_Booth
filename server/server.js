@@ -13,7 +13,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
     cors({
         credentials: true,
-        origin: process.env.CLIENT_URL
+        origin: "http://localhost:3000",
+        methods: [ "POST" ],
+        // origin: process.env.CLIENT_URL,
     })
 );
 app.use(cookieParser());

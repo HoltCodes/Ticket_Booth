@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
 
-const TicketSchema = new mongoose.Schema({
+const TicketSchema = mongoose.Schema({
   event: {
     type: String,
     required: [ true, "Event is required."],
-    minLength: [3, "Event must be a minimum of 3 characters"]
   },
   date: {
     type: String,
@@ -24,8 +23,12 @@ const TicketSchema = new mongoose.Schema({
   },
   desc: {
     type: String,
-  }
-}, { timestamps: true});
+  },
+  user_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  },
+});
 
 const Ticket = mongoose.model("Ticket", TicketSchema);
 

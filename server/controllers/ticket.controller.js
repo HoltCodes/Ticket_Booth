@@ -1,72 +1,46 @@
 const Ticket = require("../models/ticket.model");
+const User = require("../models/user.model");
+const jwt = require("jsonwebtoken");
+
+const addNewTicket = async (req, res) => {
+  const { body } = req;
+  let newTicket = new Ticket(body);
+  console.log(newTicket);
+  let decodeJwt;
+
+  // Middleware gets rid of this code!
+
+  // try {
+  //   decodeJwt = await jwt.verify(
+  //   req.cookies.usertoken,
+  //   process.env.SECRET_KEY,
+  //   );
+  //   console.log("Success", decodeJwt);
+  // } catch (error) {
+  //   console.log("TOKEN ERROR");
+  //   res.status(400).json({ errorMessage: "You must be logged in to do that!"});
+  //   return;
+  // }
+
+  // Middleware does not get rid of this code.
+  
+  // console.log("TOKEN", decodeJwt);
+  // console.log("ID: ", decodeJwt.payload.id);
+
+     newTicket.user_id = decodeJwt.id;
+     console.log("new ticket added id", newTicket);
+   try {
+     newTicket = await newTicket.save();
+     res.json(newTicket)
+     return;
+   } catch (error) {
+     console.log("error!", error);
+     res.status(400).json(error);
+     return;
+   }
+
+};
 
 module.exports = {
-  findAllTickets: (req, res) => {
-    Ticket.find({})
-    .then((allTickets) => {
-      console.log(allTickets);
-      res.json(allTickets);
-  })
-  .catch((err) => {
-    console.log("findAllTickets has failed!");
-    console.log(err);
-    res.json(err);
-  });
-},
-
-createNewTicket: (req, res) => {
-console.log("BODY", req.body);
-Ticket.create(req.body)
-  .then((newTicket) => {
-    console.log(newTicket);
-    res.json(newTicket);
-  })
-  .catch((err) => {
-    console.log("createNewTicket has failed!");
-    res.status(400).json(err);
-  });
-},
-
-findOneTicket: (req, res) => {
-Ticket.findOne({ _id: req.params.id }) 
-  .then((oneTicket) => {
-    console.log(oneTicket);
-    res.json(oneTicket);
-  })
-  .catch((err) => {
-    console.log(err);
-    console.log("findOneTicket has failed!");
-    res.json(err);
-  });
-},
-
-deleteOneTicket: (req, res) => {
-Ticket.deleteOne({ id: req.params.id })
-  .then((deletedTicket) => {
-    console.log(deletedTicket);
-    res.json(deletedTicket);
-  })
-  .catch((err) => {
-    console.log(err);
-    console.log("deleteOneTicket has failed!");
-    res.json(err);
-  });
-},
-
-updateTicket: (req, res) => {
-Ticket.findOneAndUpdate(
-  { id: req.params.id },
-  req.body,
-  { new: true, runValidators: true }
-)
-  .then((updatedTicket) => {
-    console.log(updatedTicket);
-    res.json(updatedTicket);
-  })
-  .catch((err) => {
-    console.log(err);
-    console.log("updateTicket has failed!");
-    res.status(400).json(err); 
-  });
-},
+  addNewTicket,
 };

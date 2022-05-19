@@ -4,16 +4,15 @@ const jwt = require("jsonwebtoken");
 
  const register = async (req, res) => {
     const { body } = req;
-
     // check for existing user
     try {
-        const quiredUser = await User.findOne({ email: body.email })
-        if ( quiredUser ) {
-            res.status(400).json({ error: "Email already in use"});
+        const queriedUser = await User.findOne({ email: body.email });
+        if ( queriedUser ) {
+            res.status(400).json({ error: "Email already in use" });
             return;
         }
     } catch (error) {
-        res.status(400).json(error);
+        res.status(400).json(err);
     }
 
     // save User to db
@@ -27,8 +26,9 @@ const jwt = require("jsonwebtoken");
         return;
     }
     const result = await User.create(body);
-    console.log("results", result);
+    console.log("result", result);
     res.json({ msg: "you got here"});
+    return;
  };
 
  const login = async (req, res) => {
@@ -44,9 +44,7 @@ const jwt = require("jsonwebtoken");
      } catch (error) {
          res.status(400).json({ error: "email not found"});
      }
-
      console.log("query: ", userQuery);
-
      if (userQuery === null) {
          res.status(400).json({ err: "email not found"});
          return;
@@ -62,14 +60,22 @@ const jwt = require("jsonwebtoken");
      const userToken = jwt.sign({id: userQuery._id}, process.env.SECRET_KEY);
      console.log("token", userToken);
 
-     res.cookie("usertoken", userToken, process.env.SECRET_KEY, {
+     res
+     .cookie("usertoken", userToken, process.env.SECRET_KEY, {
          httpOnly: true,
          expires: new Date(Date.now() + 90000000),
-     }).json({ msg: "successful login" });
+     })
+     .json({ msg: "successful login" });
+ };
+
+ const logout = async (req, res) => {
+    res.clearCookie("usertoken");
+    res.json({ msg: "logout successful"});
  };
 
 
  module.exports = {
     register,
     login,
- }
+    logout,
+ };

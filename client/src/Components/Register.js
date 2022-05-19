@@ -2,99 +2,80 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-const Register = (props) => {
-    const [ username, setUserName ] = useState("");
+const Register = () => {
+    const [ firstName, setFirstName ] = useState("");
+    const [ lastName, setLastName ] = useState("");
     const [ email, setEmail ] = useState ("");
     const [ password, setPassWord ] = useState ("");
     const [ confirmPassword, setConfirmPassword ] = useState("");  
-    const [errors, setErrors] = useState({});
+    const [err, setErr] = useState({});
     const navigate = useNavigate();
 
-    const [ user, setUser ] = useState({
-        username: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-    });
-
-    const register = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log({
-            username,
+        const postData = {
             email,
-            password,
-            confirmPassword
-        });
-        axios
-        .post("http://localhost:8000/api/users/register", user,{ 
-            username,
-            email,
+            firstName,
+            lastName,
             password,
             confirmPassword,
-            withCredentials: true })
-            .then(res => {
-                console.log(res.data);
-                navigate('/signin');
-            })
-            .catch(err => {
-                console.log("error", err.res)
-                setErrors(err.response.data.errors);
-                setUser({
-                    username: "",
-                    email: "",
-                    password: "",
-                    confirmPassword: "",
-                });
-            });
-    };
-
+        };
+        try {
+            await axios.post("http://localhost:8000/api/register", postData);
+            navigate("/login");
+        } catch (err) {
+            setErr(err.response.data.error);
+        }
+    }
     return (
         <div className="container"> 
            <div className="FormWrapper">
               <div className="FormContent">
-                  <form className="Form" onSubmit={ register }>
-                          <div className="FormH3">Create an Account </div>
+                  <form className="Form" onSubmit={ handleSubmit }>
+                          <div className="FormH3"> Register </div>
 
-                            <label className="FormLabel"> Username </label>
+                            <div className="FormLabel">
+                                First Name: {" "}
                                 <input 
-                                type="text" 
-                                id="username" 
-                                name="username" 
-                                // value={user.username} 
-                                className="FormInput" 
-                                onChange={(e) => setUserName(e.target.value)}/>
+                                type={"text"}
+                                onChange={(e) => setFirstName(e.target.value)}
+                                />
+                            </div>
 
-                            <label className="FormLabel"> Email </label>
+                            <div className="FormLabel">
+                                Last Name: {" "}
                                 <input 
-                                type="text" 
-                                id="email"
-                                name="email"
-                                // value={user.email} 
-                                className="FormInput" 
-                                onChange={ (e) => setEmail(e.target.value)}/>
+                                type={"text"}
+                                onChange={(e) => setLastName(e.target.value)}
+                                />
+                            </div>
 
-                            <label className="FormLabel"> Password </label>
+                            <div className="FormLabel">
+                                Email: {" "}
                                 <input 
-                                type="password"
-                                id="password" 
-                                name="password" 
-                                autoComplete="on"
-                                // value={user.password} 
-                                className="FormInput"
-                                onChange={ (e) => setPassWord(e.target.value)}/>
+                                type={"text"}
+                                onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </div>
 
-                            <label className="FormLabel"> Confirm Password </label>
+                            <div className="FormLabel">
+                                Password: {" "}
                                 <input 
-                                type="password" 
-                                id="confirmPassword" 
-                                name="confirmPassword"
-                                autoComplete="on"
-                                // value={user.confirmPassword} 
-                                className="FormInput" 
-                                onChange={ (e) => setConfirmPassword(e.target.value)}/>
+                                type={"text"}
+                                onChange={(e) => setPassWord(e.target.value)}
+                                />
+                            </div>
+
+                            <div className="FormLabel">
+                                Confirm Password: {" "}
+                                <input 
+                                type={"text"}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                />
+                            </div>
                                  
                             <button className="FormButton" type="submit">Create</button>
-                            <Link className="SignIn" to="/signin">Sign In</Link>
+                            <Link className="SignIn" to="/login">Login</Link>
                     </form>
                 </div>
             </div>
