@@ -13,7 +13,8 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const postData = {
+    
+    const postData = {
             email,
             firstName,
             lastName,

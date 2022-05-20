@@ -16,7 +16,7 @@ app.use(
         // origin: process.env.CLIENT_URL,
 
         origin: "http://localhost:3000",
-        methods: [ "POST" ],
+        methods: [ "POST", "GET", "PUT", "DELETE" ],
     })
 );
 app.use(cookieParser());

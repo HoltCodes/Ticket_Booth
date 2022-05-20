@@ -22,7 +22,7 @@ const TicketList = (props) => {
 
   return(
     <div className="container">
-      <Link to={`/add`}>Sell Your Event Tickets</Link>
+      <Link to={`/ticket_form`}>Sell Your Event Tickets</Link>
       <h3>Best place to sell your unwanted event tickets</h3>
       <table className="table">
         <thead>
@@ -49,6 +49,7 @@ const TicketList = (props) => {
           })}
         </thead>
       </table>
+      <Link to={"/register"}>Login</Link>
     </div>
   );
 };
