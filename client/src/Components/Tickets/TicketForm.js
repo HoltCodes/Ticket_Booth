@@ -23,7 +23,7 @@ const TicketForm = () => {
       numberOfTickets,
     };
     axios
-    .post("http://localhost/api/post", newTicket, {
+    .post("http://localhost/api/ticket", newTicket, {
       withCredentials: true,
     })
     .then((newTicket) => {
@@ -34,7 +34,7 @@ const TicketForm = () => {
     .catch((err) => {
       console.log(err.message);
       if (err.response.status === 400) {
-        setAuthError("You must first  login to add a ticket");
+        setAuthError("You must first login to add a ticket");
       } else {
         setErrors(err.response.data.error.errors);
       }

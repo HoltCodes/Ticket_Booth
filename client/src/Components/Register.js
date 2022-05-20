@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
     const [ firstName, setFirstName ] = useState("");
@@ -24,9 +24,9 @@ const Register = () => {
             await axios.post("http://localhost:8000/api/register", postData);
             navigate("/login");
         } catch (err) {
-            setErr(err.response.data.error);
+          setErr(err.response.data.error);
         }
-    }
+    };
     return (
         <div className="container"> 
            <div className="FormWrapper">
@@ -75,7 +75,7 @@ const Register = () => {
                             </div>
                                  
                             <button className="FormButton" type="submit">Create</button>
-                            <Link className="SignIn" to="/login">Login</Link>
+                            <button className="SignIn" to="/login">Login</button>
                     </form>
                 </div>
             </div>

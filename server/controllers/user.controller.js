@@ -27,27 +27,25 @@ const jwt = require("jsonwebtoken");
     }
     const result = await User.create(body);
     console.log("result", result);
-    res.json({ msg: "you got here"});
     return;
  };
 
  const login = async (req, res) => {
      const { body } = req;
-     
      if(!body.email) {
-         res.status(400).json({ error: "no email provided" });
-         return;
+         return res.status(400).json({ error: "no email provided" });
+         
      }
      let userQuery;
      try {
          userQuery = await User.findOne({ email: body.email });
      } catch (error) {
-         res.status(400).json({ error: "email not found"});
+         return res.status(400).json({ error: "email not found"});
      }
      console.log("query: ", userQuery);
      if (userQuery === null) {
-         res.status(400).json({ err: "email not found"});
-         return;
+         return res.status(400).json({ err: "email not found"});
+         
      }
 
      const passwordCheck = bcrypt.compareSync(body.password, userQuery.password);

@@ -16,7 +16,7 @@ const Login = () => {
     setSuccessMsg("");
     const postData = ( email, password );
     axios
-    .post("http://localhost:8000/api/login", postData, {
+    .post('http://localhost:8000/api/login', postData, {
       withCredentials: true,
     })
     .then((response) => console.log(response))

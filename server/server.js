@@ -23,10 +23,10 @@ app.use(cookieParser());
 
 dotenv.config({path : './config.env'});
 
-var token = jwt.sign({ foo: "bar" }, process.env.SECRET_KEY);
-console.log("token : ", token);
-const decodeToken = jwt.verify(token, process.env.SECRET_KEY);
-console.log(decodeToken);
+// var token = jwt.sign({ foo: "bar" }, process.env.SECRET_KEY);
+// console.log("token : ", token);
+// const decodeToken = jwt.verify(token, process.env.SECRET_KEY);
+// console.log(decodeToken);
 
 
 require("./config/mongoose.config");
