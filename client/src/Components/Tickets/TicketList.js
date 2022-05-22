@@ -22,7 +22,6 @@ const TicketList = (props) => {
 
   return(
     <div className="container">
-      <Link to={`/ticket_form`}>Sell Your Event Tickets</Link>
       <h3>Best place to sell your unwanted event tickets</h3>
       <table className="table">
         <thead>
@@ -32,6 +31,7 @@ const TicketList = (props) => {
             <th scope="col">Location</th>
             <th scope="col">Price</th>
             <th scope="col">Number of Ticket(s)</th>
+            <th scope="col">Details</th>
           </tr>
           {ticketList.map((ticket, index) => {
             return(
@@ -49,7 +49,8 @@ const TicketList = (props) => {
           })}
         </thead>
       </table>
-      <Link to={"/register"}>Login</Link>
+      <Link className="link" to={`/ticket_form`}>Sell Your Event Tickets</Link>
+      {/* <Link to={"/register"}>Login</Link> */}
     </div>
   );
 };

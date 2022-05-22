@@ -47,13 +47,8 @@ const TicketEdit = () => {
   return (
     <div className="container">
     <h3> Edit: {event}</h3>
-    <div className="rows-center">
-      <div className="col-3">
-      <div className="row">
-      <Link to="/">Back to Home</Link>
-      </div>
     <form onSubmit={ handleEditTicket }>
-    <div className="form-group">
+    <div className="form">
       <label htmlFor="event">Event:</label>
       <input
         type="text"
@@ -108,13 +103,14 @@ const TicketEdit = () => {
         value={desc}
       />
     </div>
-        <button className="btn btn-primary mt-3"    type="submit">
+    </form>
+      <div className="sub-nav">
+        <button className="update"    type="submit">
            Update Event
         </button>
-      </form>
+      <Link className="link" to="/">Back to Home</Link>
+      </div>
     </div>
-    </div>
- </div>
   );
 };
 

@@ -28,7 +28,7 @@ const deleteTicket = () => {
   .catch((err) => console.log(err))
 }
   return (
-    <div className="oneTicket-component">
+    <div className="table">
       <h3>Details about: {oneTicket.event}</h3>
       <p>Date of event: {oneTicket.date}</p>
       <p>Location of event: {oneTicket.location}</p>
@@ -36,8 +36,8 @@ const deleteTicket = () => {
       <p>Price: ${oneTicket.price}</p>
       <p>Description: {oneTicket.desc}</p>
       <br/>
-      <Link to={"/"} className="btn btn-primary"> Back to home</Link>
-      <button onClick={deleteTicket} className="btn btn-danger ml-5">Buy Ticket(s) </button>
+      <Link to={"/"} className="link"> Back to home</Link>
+      <button onClick={deleteTicket} className="buy">Buy Ticket(s) </button>
     </div>
   );
 };
