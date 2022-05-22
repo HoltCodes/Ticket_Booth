@@ -2,6 +2,12 @@
   text-align: center;
 }
 
+.error {
+  color: white;
+}
+
+/* ----------Error notifications--------------- */
+
 /* -------------Home Page (Ticket List)-------- */
 body {
   font-family: 'Open Sans', sans-serif;

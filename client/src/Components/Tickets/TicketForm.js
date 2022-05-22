@@ -11,7 +11,6 @@ const TicketForm = () => {
   const[ numberOfTickets, setNumberOfTickets ] = useState("");
   const navigate = useNavigate();
   const [ errors, setErrors ] = useState({});
-  const [authError, setAuthError] = useState("");
   
   const handleAddTicket = (e) => {
     const newTicket = {
@@ -25,19 +24,20 @@ const TicketForm = () => {
     axios
     .post("http://localhost/api/ticket", newTicket, {
       withCredentials: true,
+      event,
+      date,
+      desc,
+      location,
+      price,
+      numberOfTickets,
     })
-    .then((newTicket) => {
-      setErrors({});
-      setAuthError();
-      console.log(newTicket);
+    .then((res) => {
+     console.log("success", res);
+     navigate("/");
     })
     .catch((err) => {
-      console.log(err.message);
-      if (err.response.status === 400) {
-        setAuthError("You must first login to add a ticket");
-      } else {
-        setErrors(err.response.data.error.errors);
-      }
+      console.log("error", err.res);
+      setErrors(err.response.data.errors);
     });
   };
 
@@ -58,7 +58,7 @@ const TicketForm = () => {
                 className="form-control"
                 onChange={(e) => setEvent(e.target.value)}
               />
-              {errors.event && <p style={{ color: "red" }}>{ errors.event.message }</p>}
+              {errors.event && <p style={{ color: "white" }} >{ errors.event.message }</p>}
 
               <label htmlFor="date">Event Date:</label>
               <input
@@ -67,7 +67,7 @@ const TicketForm = () => {
                 className="form-control"
                 onChange={(e) => setDate(e.target.value)}
               />
-              {errors.date && <p style={{ color: "red" }}>{ errors.date.message }</p>}
+              {errors.date && <p style={{ color: "white" }}>{ errors.date.message }</p>}
 
               <label htmlFor="location">Location:</label>
               <input
@@ -76,7 +76,7 @@ const TicketForm = () => {
                 className="form-control"
                 onChange={(e) => setLocation(e.target.value)}
               />
-              {errors.location && <p style={{ color: "red" }}>{ errors.location.message }</p>}
+              {errors.location && <p style={{ color: "white" }}>{ errors.location.message }</p>}
 
               <label htmlFor="numberOfTickets">Number of Tickets:</label>
               <input

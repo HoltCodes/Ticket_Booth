@@ -10,17 +10,19 @@ module.exports = {
             })
             .catch((err)=>{
                 res.status(400).json(err);
+                console.log(err);
+                res.json(err);
             })
 
     },
     addNewTicket: (req,res)=>{
+        console.log("BODY", req.body);
         Ticket.create(req.body)
             .then((newTicket)=>{
                 console.log(newTicket);
                 res.json(newTicket);
             })
             .catch((err)=>{
-                console.log(err);
                 console.log("addTicket has failed!");
                 res.status(400).json(err);
             })
@@ -50,7 +52,8 @@ module.exports = {
             })
     },
     updateTicket: (req,res) =>{
-        Ticket.findOneAndUpdate({_id: req.params.id},
+        Ticket.findOneAndUpdate(
+            {_id: req.params.id},
             req.body,
             {new: true, runValidators: true}
         )
