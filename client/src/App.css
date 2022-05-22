@@ -152,7 +152,7 @@ margin: 30px;
 
 button.update {
   background-color: transparent;
-  margin-right: 10px;
+  margin: 20px;
   color: #4DC3FA;
   font-size: medium;
   text-decoration: none;
@@ -187,6 +187,35 @@ button.update {
 .buy{
   background-color: transparent;
   margin-left: 10px;
+  color: #4DC3FA;
+  font-size: medium;
+  text-decoration: none;
+  padding-bottom: 10px;
+  border: 3px solid;
+  padding: 10px;
+  border-image: linear-gradient(
+    #4DC3FA,
+    #185875,
+    #323C50) 1;
+    animation: rotate
+    2.5s
+    ease-in
+    infinite;
+}
+@keyframes rotate {
+  50%{
+    border-image: 
+    linear-gradient(
+      360deg,
+    #185875,
+    #4DC3FA,
+    #323C50) 1;
+  }
+}
+
+.link{
+  background-color: transparent;
+  margin-bottom: 40px;
   color: #4DC3FA;
   font-size: medium;
   text-decoration: none;

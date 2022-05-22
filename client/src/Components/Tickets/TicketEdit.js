@@ -10,6 +10,7 @@ const TicketEdit = () => {
   const[ location, setLocation ] = useState("");
   const[ price, setPrice ] = useState("");
   const[ numberOfTickets, setNumberOfTickets ] = useState("");
+  const [ errors, setErrors ] = useState({});
 
   const navigate = useNavigate();
 
@@ -41,8 +42,11 @@ const TicketEdit = () => {
     console.log(res.data);
     navigate("/");
   })
-    .catch((err) =>console.log(err))
-  }
+    .catch((err) => {
+      console.log("error", err.res);
+      setErrors(err.response.data.errors);
+    })
+};
 
   return (
     <div className="container">
@@ -58,6 +62,8 @@ const TicketEdit = () => {
         value={event}
       />
 
+       {errors.date && <p style={{ color: "white" }}>**{ errors.event.message }**</p>}
+
       <label htmlFor="date">Event Date:</label>
       <input
         type="text"
@@ -66,6 +72,7 @@ const TicketEdit = () => {
         onChange={(e) => setDate(e.target.value)}
         value={date}
       />
+       {errors.event && <p style={{ color: "white" }} >**{ errors.date.message }**</p>}
 
       <label htmlFor="location">Event Location:</label>
       <input
@@ -75,6 +82,7 @@ const TicketEdit = () => {
         onChange={(e) => setLocation(e.target.value)}
         value={location}
       />
+       {errors.location && <p style={{ color: "white" }}>**{ errors.location.message }**</p>}
 
       <label htmlFor="numberOfTickets">Number of Tickets</label>
       <input
@@ -103,13 +111,11 @@ const TicketEdit = () => {
         value={desc}
       />
     </div>
-    </form>
-      <div className="sub-nav">
-        <button className="update"    type="submit">
+    <button className="update" type="submit">
            Update Event
         </button>
+    </form>
       <Link className="link" to="/">Back to Home</Link>
-      </div>
     </div>
   );
 };

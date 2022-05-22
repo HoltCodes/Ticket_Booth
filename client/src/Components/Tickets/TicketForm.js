@@ -13,17 +13,17 @@ const TicketForm = () => {
   const [ errors, setErrors ] = useState({});
   
   const handleAddTicket = (e) => {
-    const newTicket = {
+    e.preventDefault();
+    console.log({
       event,
       date,
       desc,
       location,
       price,
       numberOfTickets,
-    };
+    });
     axios
-    .post("http://localhost/api/ticket", newTicket, {
-      withCredentials: true,
+    .post("http://localhost:8000/api/tickets",{
       event,
       date,
       desc,
@@ -58,7 +58,7 @@ const TicketForm = () => {
                 className="form-control"
                 onChange={(e) => setEvent(e.target.value)}
               />
-              {errors.event && <p style={{ color: "white" }} >{ errors.event.message }</p>}
+              {errors.event && <p style={{ color: "white" }} >**{ errors.event.message }**</p>}
 
               <label htmlFor="date">Event Date:</label>
               <input
@@ -67,7 +67,7 @@ const TicketForm = () => {
                 className="form-control"
                 onChange={(e) => setDate(e.target.value)}
               />
-              {errors.date && <p style={{ color: "white" }}>{ errors.date.message }</p>}
+              {errors.date && <p style={{ color: "white" }}>**{ errors.date.message }**</p>}
 
               <label htmlFor="location">Location:</label>
               <input
@@ -76,7 +76,7 @@ const TicketForm = () => {
                 className="form-control"
                 onChange={(e) => setLocation(e.target.value)}
               />
-              {errors.location && <p style={{ color: "white" }}>{ errors.location.message }</p>}
+              {errors.location && <p style={{ color: "white" }}>**{ errors.location.message }**</p>}
 
               <label htmlFor="numberOfTickets">Number of Tickets:</label>
               <input
@@ -105,7 +105,7 @@ const TicketForm = () => {
 
 
             </div>
-            <button className="btn btn-primary mt-3" type="submit">
+            <button className="link" type="submit">
              Sell Ticket(s)
             </button>
           </form>
