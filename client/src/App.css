@@ -42,7 +42,7 @@ a.link {
     infinite;
 }
 @keyframes rotate {
-  50%{
+  100%{
     border-image: 
     linear-gradient(
       360deg,
